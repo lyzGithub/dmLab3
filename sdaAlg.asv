@@ -22,21 +22,12 @@ if cons == 0
    disp('g is not connected in conn = ',num2str(conn)); 
    return ;
 end
-
 %Ly=eDy
 %D^-1Ly = Ey
 D = zeros(m,m);
 L = zeros(m,m);
 for i = 1:m
-   D(i,i) = sum(wMatrix(:,i));
-end
-L = D - wMatrix;
-TEM = (D^-1) * L;
-[eigenVector, eigenValues] = eig(TEM);
-listValues = abs(real(diag(eigenValues)));
-[~,order] = sort(listValues);
-for i = 1:k
-    reduceMatrix(:,i) = real(eigenVector(:,order(i)));
+   D(i,i) = sum(wMatrix(:,1));
 end
 
 
