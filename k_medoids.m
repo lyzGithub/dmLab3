@@ -1,4 +1,4 @@
-function [ labelAlgDeter ] = k_medoids( dataSet, k, label )
+function [ labelAlgDeter ] = k_medoids( dataSet, k )
 [m,n] = size(dataSet);
 temp = zeros(m,1);
 dataCluster = [dataSet temp];
@@ -19,7 +19,7 @@ end
 
 
 isChanged = 1;
-while isChanged == 1 
+while isChanged == 1
     
     randomOi = randi(m);
     belongTag = dataCluster(randomOi,n+1);
@@ -34,7 +34,7 @@ while isChanged == 1
         dataClusterNew(i,n+1) = I;%1-k
         E2 = E2+minDis;
     end
-   % disp(['is in E2 E1: ',num2str(E2),' ',num2str(E1)]);
+    % disp(['is in E2 E1: ',num2str(E2),' ',num2str(E1)]);
     if E2 < E1
         dataCluster = dataClusterNew;
         randomIndex = newIndex;
@@ -43,7 +43,7 @@ while isChanged == 1
     if E1 <= E2
         isChanged = 0;
     end
-        
+    
 end
 
 labelAlgDeter = dataCluster(:,n+1);
@@ -51,4 +51,4 @@ labelAlgDeter = dataCluster(:,n+1);
 
 
 end
-
+% product by ???

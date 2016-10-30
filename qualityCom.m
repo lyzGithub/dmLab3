@@ -11,7 +11,7 @@ if k == 2
     
     M = zeros(k,k);
     for i = 1:m
-       M(tlabel(i,1),deterLabel(i,1)) = M(tlabel(i,1),deterLabel(i,1)) +1;
+        M(tlabel(i,1),deterLabel(i,1)) = M(tlabel(i,1),deterLabel(i,1)) +1;
     end
     [maxS,~] = max(M);
     d=sum(sum(maxS));
@@ -43,7 +43,7 @@ if k == 10
     end
     M = zeros(k,k);
     for i = 1:m
-       M(tlabel(i,1),deterLabel(i,1)) = M(tlabel(i,1),deterLabel(i,1)) +1;
+        M(tlabel(i,1),deterLabel(i,1)) = M(tlabel(i,1),deterLabel(i,1)) +1;
     end
     
     [maxS,~] = max(M);
@@ -68,7 +68,7 @@ if k == 10
 end
 if k ~= 10 && k~=2
     disp('k is not right!!!');
-
+    
 end
 end
-
+% product by ???

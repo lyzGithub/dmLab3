@@ -1,3 +1,6 @@
+
+
+% product by ???
 germanDataPath = 'data/german.txt';
 mnistDataPath = 'data/mnist.txt';
 
@@ -23,7 +26,7 @@ maxGerP = 0;
 mingerGini = 1;
 disp('compute for k-mediods:german~~');
 for i = 1:10
-    labelAlgDeter = k_medoids(germanMatrix, germanK, germanLabel);
+    labelAlgDeter = k_medoids(germanMatrix, germanK);
     [gerP, gerGini] = qualityCom(germanLabel,labelAlgDeter,germanK);
     if maxGerP < gerP
         maxGerP  = gerP;
@@ -42,7 +45,7 @@ maxMnistP = 0;
 minMnisGini = 1;
 disp('compute for k-mediods:mnist~~');
 for i = 1:10
-    labelAlgDeter = k_medoids(mnistMatrix, mnistK, mnistLabel);
+    labelAlgDeter = k_medoids(mnistMatrix, mnistK);
     [minstP, mnistGini] = qualityCom(mnistLabel,labelAlgDeter,mnistK);
     if maxMnistP < minstP
         maxMnistP  = minstP;
@@ -66,7 +69,7 @@ for j = 1:3
     maxGerP = 0;
     mingerGini = 1;
     for i = 1:10
-        labelAlgDeter = k_medoids(reduceGerman, germanK, germanLabel);
+        labelAlgDeter = k_medoids(reduceGerman, germanK);
         [gerP, gerGini] = qualityCom(germanLabel,labelAlgDeter,germanK);
         if maxGerP < gerP
             maxGerP  = gerP;
@@ -89,7 +92,7 @@ for j = 1:3
     maxMnistP = 0;
     minMnisGini = 1;
     for i = 1:10
-        labelAlgDeter = k_medoids(reduceMnist, mnistK, mnistLabel);
+        labelAlgDeter = k_medoids(reduceMnist, mnistK);
         [minstP, mnistGini] = qualityCom(mnistLabel,labelAlgDeter,mnistK);
         if maxMnistP < minstP
             maxMnistP  = minstP;
@@ -102,7 +105,7 @@ for j = 1:3
     disp(['mnist, purity: ',num2str(maxMnistP),', gini index: ',num2str(minMnisGini)]);
     disp(['conn value:',num2str(3*j)]);
 end
-
+% product by ???
 
 
 
