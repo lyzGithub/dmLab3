@@ -1,0 +1,50 @@
+germanDataPath = 'data/german.txt';
+%mnistDataPath = 'data/mnist.txt';
+
+germanMatrix = load(germanDataPath);
+%mnistMatrix = load(mnistDataPath);
+[gerM,gerN] = size(germanMatrix);
+%[mniM,mniN] = size(mnistMatrix);
+germanK = 2;
+mnistK = 10;
+
+germanLabel = germanMatrix(:,gerN);
+%mnistLabel = mnistMatrix(:,mniN);
+
+germanMatrix(:,gerN) = [];
+%mnistMatrix(:,mniN) = []; 
+maxGerP = 0;
+mingerGini = 1;
+for i = 1:10
+    labelAlgDeter = k_medoids(germanMatrix, germanK, germanLabel);
+    [gerP, gerGini] = qualityCom(germanLabel,labelAlgDeter,germanK);
+    if maxGerP<gerP
+        maxGerP  = gerP;
+    end
+    if mingerGini>gerGini
+        mingerGini = gerGini;
+    end
+end
+disp(['german, purity: ',num2str(maxGerP),', gini index: ',num2str(mingerGini)]);
+
+maxGerP = 0;
+mingerGini = 1;
+for i = 1:10
+    labelAlgDeter = k_medoids(germanMatrix, germanK, germanLabel);
+    [gerP, gerGini] = qualityCom(germanLabel,labelAlgDeter,germanK);
+    if maxGerP<gerP
+        maxGerP  = gerP;
+    end
+    if mingerGini>gerGini
+        mingerGini = gerGini;
+    end
+end
+disp(['german, purity: ',num2str(maxGerP),', gini index: ',num2str(mingerGini)]);
+
+
+%[mnistP,ministG] = k_medoids(mnistMatrix, mnistK, mnistLabel);
+%disp(['mnist, purity: ',num2str(mnistP),', gini index: ',num2str(ministG)]);
+
+
+
+

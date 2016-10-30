@@ -1,0 +1,68 @@
+function [ purity, gini ] = k_medoids( dataSet, k, label )
+[m,n] = size(dataSet);
+temp = zeros(m,1);
+dataCluster = [dataSet temp];
+randomIndex = randi(m,[1,k]);
+randomIndex
+randomOMatrix = buildRandomMatrix( dataSet, randomIndex);
+randomOMatrix
+E1 = 0;
+E2 = 0;
+
+%???????
+for i= 1:m
+    tmpRow = dataSet(i,:);
+    D = pdist2(tmpRow,randomOMatrix,'cityblock');
+    [minDis,I] = min(D.');%????
+    dataCluster(i,n+1) = I;%1-k
+    E1 = E1+minDis;
+end
+
+%     
+% for j = 1:10
+% isChanged = 1;
+% while isChanged == 1 
+%     
+%     randomOi = randi(m);
+%     disp(['randomOi: ', num2str(randomOi)]);
+%     belongTag = dataCluster(randomOi,n+1);
+%     newIndex = randomIndex;
+%     newIndex(1,belongTag) = randomOi;
+%     newIndex
+%     newOMatrix = buildRandomMatrix(dataSet,newIndex);
+%     dataClusterNew = [dataSet temp];
+%     for i= 1:m
+%         tmpRow = dataSet(i,:);
+%         D = pdist2(tmpRow,newOMatrix,'cityblock');
+%         [minDis,I] = min(D.');%????
+%         dataClusterNew(i,n+1) = I;%1-k
+%         E2 = E2+minDis;
+%     end
+%     disp(['is in E2 E1: ',num2str(E2),' ',num2str(E1)]);
+%     if E2 < E1
+%         dataCluster = dataClusterNew;
+%         randomIndex = newIndex;
+%         randomOMatrix = newOMatrix;
+%     end
+%     if E1 <= E2
+%         isChanged = 0;
+%     end
+%         
+% end
+% end
+
+for i = 1:m
+    dataCluster(i,n+1) = label(randomIndex(1,dataCluster(i,n+1)));
+end
+allhit = 0;
+for i = 1:m
+    if dataCluster(i,n+1) == label(i,1)
+        allhit = allhit + 1;
+    end
+end
+disp(['E1: ',num2str(E1), ', allhit: ', num2str(allhit)]);
+
+purity = 0;
+gini = 0;
+end
+
